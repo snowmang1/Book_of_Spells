@@ -1,6 +1,7 @@
 
 pub mod cl_parse;
 pub mod logio;
+pub mod hours;
 
 pub fn flag_eq(flag: &i8, check: &i8) -> bool {
     if flag == check{
@@ -82,6 +83,32 @@ mod cmd_parse_tests {
         }else {
             assert!(false);
         }
+    }
+}
+
+#[cfg(test)]
+mod hours_tests {
+    use super::*;
+
+    #[test]
+    fn test_find() {
+        let test_str = "date\nLogin: 01:00:00\nLogout: 02:00:00\n".to_string();
+        let result = hours::find_times(test_str.chars());
+        let test_res = "01:00:00 02:00:00".to_string();
+
+        assert_eq!(result, test_res);
+    }
+
+    #[test]
+    fn test_total() {
+        let login  = "01:23:50".to_string();
+        let logout = "02:23:50".to_string();
+        let result : String = "01:00:00".to_string();
+        let test_res : String = match hours::total_hours(login.chars(), logout.chars()) {
+            Err(why) => panic!("TOTAL_HOURS ERROR: {}", why),
+            Ok(res) => res,
+        };
+        assert_eq!(test_res, result);
     }
 }
 

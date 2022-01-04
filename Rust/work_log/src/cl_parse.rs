@@ -1,7 +1,8 @@
 
 pub fn get_cmd(iter: impl Iterator<Item = String>,
                fl: &mut String, dt: &mut String,
-               tim: &mut String) {
+               tim: &mut String)
+{
     let args: Vec<String> = iter.skip(1).collect();
     *fl  = args[0].to_owned();
     *dt  = args[1].to_owned();

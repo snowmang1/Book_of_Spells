@@ -3,16 +3,12 @@
 # This is the bash driver for rust code that will file and archive my
 # work times according to the date and time.
 # possible flags: "action" = [char flag]
-# login = i
-# logout = o
-# new_month = n
-# print = p
-# help = h
+# syntax for input: [flag] [date] [time]
 
 declare DATE=$(date +"%D %T") 1> /dev/null
 declare ARCH_MONTH=$(date "+%m")
 
-if [ "$1" == "h" ] || [ -z "$1" ]
+if [[ $1 =~ ^h(elp)?$ ]] || [[ -z $1 ]]
 then
 	# misuse / help case
 	echo 	"
@@ -25,14 +21,14 @@ then
 	exit
 fi
 
-if [ "$1" == "p" ]
+if [[ $1 =~ ^p(rint)?$ ]]
 then
 	# printing log
 	cat log.txt
 	exit
 fi
 
-if [ "$1" == "n" ]
+if [[ $1 =~ ^n(ew)?*$ ]]
 then
 	# for version 0.2.0+
 	# log archive system
@@ -75,9 +71,32 @@ then
 			;;
 	esac
 	ARCH_MONTH="$ARCH_MONTH$(date "+%Y").txt"
-	exit
+	if [[ -d log_archive ]]
+	then
+		# insert log into archive
+		mv log.txt log_archive/"$ARCH_MONTH"
+		touch log.txt
+	else
+		# create archive and insert log
+		mkdir log_archive
+		mv log.txt log_archive/"$ARCH_MONTH"
+		touch log.txt
+	fi
 fi
 
 # all other cases can be sorted by program
 
-./target/release/work_log $1 $DATE
+if [[ -f target/release/work_log ]]
+then
+	# found optimized binary
+	./target/release/work_log $1 $DATE
+elif [[ -f target/debug/work_log ]]
+then
+	# found unoptimized
+	./target/debug/work_log $1 $DATE
+
+else
+	# no binary found
+	echo "ERROR NO BINARY FOUND"
+
+fi
