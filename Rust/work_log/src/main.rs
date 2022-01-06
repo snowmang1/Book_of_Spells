@@ -14,11 +14,14 @@ fn main()
     cl_parse::flag_check(&mut flags, cmd_flag);
     // check for flags for needed action
     logio::log_prot(&flags, &date, &time);
-    //open file stream gets closed when it goes out of scope.
-    hours::hours();
+    // open file stream gets closed when it goes out of scope.
+    if flags == 2 {
+        // version 0.2.0+
+        // add total to end each logout session
+        hours::hours();
+    }
 }
 
 // TODO version 0.2.0
-// -calculate hours per logio
 // -calculate total hours
 

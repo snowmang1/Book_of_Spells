@@ -6,11 +6,11 @@ use std::io::Write;
 pub fn log_prot(flag: &i8, date: &String, tim: &String)
 {
     let buffer: String = match flag {
-        1 | 8   => date.to_owned() + &"\n".to_string() + &"Login: ".to_string() + tim + &"\n".to_string(),
+        1 | 8   => date.to_owned() + &"\n".to_string() 
+            + &"Login: ".to_string() + tim + &"\n".to_string(),
         2       => "Logout: ".to_string() + tim + &"\n".to_string(),
-        _       => panic!("ERROR IN LOG_PROT"),
+        _       => panic!("ERROR IN LOGIO"),
     };
-
 
     // create file path
     let out_path = Path::new("log.txt");
