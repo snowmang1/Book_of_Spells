@@ -1,7 +1,7 @@
 
 pub mod cl_parse;
 pub mod logio;
-pub mod hours;
+pub mod total;
 
 fn main()
 {
@@ -18,10 +18,8 @@ fn main()
     if flags == 2 {
         // version 0.2.0+
         // add total to end each logout session
-        hours::hours();
+        let times = total::hours::hours();
+        total::show_total(times);
     }
 }
-
-// TODO version 0.2.0
-// -calculate total hours
 

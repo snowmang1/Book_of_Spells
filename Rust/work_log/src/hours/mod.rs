@@ -1,15 +1,19 @@
 
 use std::path::Path;
 use std::fs::OpenOptions;
-use std::io::Read;
 use std::io::Write;
 
 pub mod hours_sub_total;
+pub mod find;
+pub mod times;
 
-pub fn hours_out(time: &String) {
+#[path = "../fts.rs"]
+pub mod fts;
 
-    let buffer = "Sub_Total: ".to_string() + &time + &"\n".to_string();
-    
+fn hours_out(time: &str) {
+
+    let buffer = "Sub_Total: ".to_string() + time + &"\n".to_string();
+
     let path = Path::new("log.txt");
     let display = path.display();
 
@@ -19,28 +23,20 @@ pub fn hours_out(time: &String) {
         Ok(h_file) => h_file,
     };
 
-    match out_file.write_all(buffer.as_bytes()) {
-        Err(_why) => panic!("ERROR IN FILE WRITE"),
-        Ok(_) => (),
-    }
+    if let Err(_why) = out_file.write_all(buffer.as_bytes()) {panic!("ERROR IN FILE WRITE");}
 }
 
-pub fn hours() {
-    let mut h_string = String::new();
-    // caclulate hours of session of logout
-    let h_path = Path::new("log.txt");
-    let display = h_path.display();
-
-    let mut h_file = match OpenOptions::new()
-            .read(true).open(&h_path) {
-        Err(why) => panic!("ERROR: {}, FILE TO BE OPENED: {}", why, display),
-        Ok(h_file) => h_file,
+pub fn hours() -> find::Times{
+    let h_string = fts::file_to_string();
+    let times = find::find_times(h_string.chars());
+    // protocal for sub_totals
+    let hours_sub = match hours_sub_total::total_hours(times.login_list[times.login_list.len()-1].chars(),
+                                                 times.logout_list[times.logout_list.len()-1].chars()) {
+        Err(why) => panic!("{}", why),
+        Ok(res) => res,
     };
 
-    match h_file.read_to_string(&mut h_string) {
-        Err(why) => panic!("ERROR: {}, WITH READ_TO_STRING", why),
-        Ok(h_string) => h_string,
-    };
+    hours_out(hours_sub.as_str());
 
-    hours_out( &hours_sub_total::find_times(h_string.chars()) );
+    times
 }

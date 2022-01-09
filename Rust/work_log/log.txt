@@ -1,8 +1,0 @@
-01/05/22
-Login: 17:38:46
-Logout: 17:38:48
-Sub_Total: 0:0:2
-01/05/22
-Login: 17:38:55
-Logout: 17:38:58
-Sub_Total: 0:0:2

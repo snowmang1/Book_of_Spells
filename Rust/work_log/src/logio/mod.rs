@@ -3,7 +3,7 @@ use std::path::Path;
 use std::fs::OpenOptions;
 use std::io::Write;
 
-pub fn log_prot(flag: &i8, date: &String, tim: &String)
+pub fn log_prot(flag: &i8, date: &str, tim: &str)
 {
     let buffer: String = match flag {
         1 | 8   => date.to_owned() + &"\n".to_string() 
@@ -30,8 +30,5 @@ pub fn log_prot(flag: &i8, date: &String, tim: &String)
         };
     }
 
-    match out_file.write_all(buffer.as_bytes()) {
-        Err(_why) => panic!("ERROR IN FILE WRITE"),
-        Ok(_) => println!("success!!!"),
-    }
+    if let Err(_why) = out_file.write_all(buffer.as_bytes()) { panic!("ERROR IN FILE WRITE") }
 }
