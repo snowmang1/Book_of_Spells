@@ -18,5 +18,9 @@ edition = "2021"
 
 # version 0.2.1
 ## cleanup code
+## issue with carry for seconds only taking from hours and createing negatives in minutes
+### for testing:
+#### Login:  9:57:39
+#### Logout: 10:57:20
 
 [dependencies]
