@@ -5,13 +5,13 @@
 int main()
 {
 	int i = 0;						// genral use iterator
-	struct node* root = NULL;		// this points to the back of the structure
-	struct node* cur = NULL;		// helper pointer so that tail is not moved
-	
+	struct node* root = NULL;				// this points to the back of the structure
+	struct node* cur = NULL;				// helper pointer so that tail is not moved
+
 	root = (struct node*) malloc( sizeof(struct node) ); // initial node of the structure
 	cur = root;
 	//loading the queue
-	for( i=0;i<10;i+=1) 
+	for( i=0;i<10;i+=1)
 	{
 		cur->value = i;
 		cur->next = (struct node*) malloc( sizeof(struct node) );
@@ -27,7 +27,7 @@ int main()
 		printf(" %d", cur->value);
 		cur = cur->next;
 	}
-	
+
 	//unloading the queue
 	while(root)
 	{
@@ -35,7 +35,7 @@ int main()
 		root = root->next;
 		free(cur);
 	}
-	
-	
+
+
 	return 0;
 }

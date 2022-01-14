@@ -9,7 +9,7 @@ singly linked list that pops the "front" or "head" and adds to the "back" or "ta
 
 struct node
 {
-	struct node* next;		// this is the next node in the list containing the next "key" or "value"
+	struct node* next;			// this is the next node in the list containing the next "key" or "value"
 	int value;				// this is the key or data actually being stored
 };
 
