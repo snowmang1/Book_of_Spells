@@ -5,22 +5,31 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-# version 0.1.0
+# legend: + add feature, - replace/eliminate feature.
+
+# version 0.1.0 DONE
 ## + login
 ## + logout
 ## + truncate
 
-# version 0.2.0
-## - truncate
+# version 0.2.0 CURRENT
+## - truncation
 ## + archive for each new month
 ## + sub total
 ## + file wide total
 
-# version 0.2.1
+# version 0.2.5 WORKING
 ## cleanup code
+### total.rs needs to be inside the hours dir
 ## issue with carry for seconds only taking from hours and createing negatives in minutes
 ### for testing:
 #### Login:  9:57:39
 #### Logout: 10:57:20
+
+# version 0.3.0
+## + add past time to log
+## + optional per login/logout notes
+### these would be an archive of text files attached to a specific login/logout time
+## + pretty output for times
 
 [dependencies]

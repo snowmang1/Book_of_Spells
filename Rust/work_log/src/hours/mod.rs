@@ -5,7 +5,6 @@ use std::io::Write;
 
 pub mod hours_sub_total;
 pub mod find;
-pub mod times;
 
 #[path = "../fts.rs"]
 pub mod fts;

@@ -205,4 +205,18 @@ mod util_tests {
         assert_eq!(test_res, res);
     }
 
+    #[test]
+    fn test_carry() {
+        let times = total::hours::find::Times {
+            login_list: ["09:57:39".to_string()].to_vec(),
+            logout_list: ["10:57:20".to_string()].to_vec(),
+        };
+        let res = "0:59:19";
+        let test_res = match total::show_total(times) {
+            Err(why) => panic!("{}", why),
+            Ok(res) => res,
+        };
+        assert_eq!(res,test_res);
+    }
+
 }
