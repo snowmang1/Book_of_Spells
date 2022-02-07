@@ -19,12 +19,13 @@ edition = "2021"
 ## + file wide total
 
 # version 0.2.5 WORKING
-## cleanup code
-### total.rs needs to be inside the hours dir
 ## issue with carry for seconds only taking from hours and createing negatives in minutes
 ### for testing:
 #### Login:  9:57:39
 #### Logout: 10:57:20
+
+# version 0.2.7
+## change to multiple crate system
 
 # version 0.3.0
 ## + add past time to log
