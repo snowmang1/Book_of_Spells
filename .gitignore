@@ -4,3 +4,6 @@
 
 # ignore target
 target
+
+# ignore Rust dir
+Rust
