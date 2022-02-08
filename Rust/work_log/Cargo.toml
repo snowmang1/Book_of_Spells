@@ -25,8 +25,16 @@ edition = "2021"
 #### Logout: 10:57:20
 
 # version 0.2.7
+<<<<<<< Updated upstream
 ## change to multiple crate system
 ## add file discriptions
+=======
+## cleanup modules
+### create a module for each operation add, minus, total time
+### create a module for each data structure
+## - lib.rs
+### currently I am breaking the library xor binary rule
+>>>>>>> Stashed changes
 
 # version 0.3.0
 ## + add past time to log
