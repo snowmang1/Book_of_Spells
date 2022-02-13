@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # if I entered the name of a file
-if [[$1 != 0]]
+if [[ -f $1".tex" ]]
 then
 	fname=$1
 	# compile to pdf and open it
-	pdflatex $fname".tex" && open $fname".pdf"
+	pdflatex $fname".tex"
+	open $fname".pdf"
 fi
 
 # if there are no .tex dont enter the loop
