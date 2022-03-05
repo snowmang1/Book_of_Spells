@@ -7,3 +7,7 @@ target
 
 # ignore Rust dir
 Rust
+
+# executables
+*.exe
+*.dSYM
