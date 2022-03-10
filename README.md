@@ -8,13 +8,13 @@ tiny git tutorial for those who have not used it. git is a version control syste
 
 to download a repo say my repo from the internet you would CLONE it. do not FORK it and do not make a PULL request. these are the steps to do so.
 
-1. install git, if you are on windows you have to go to https://git-scm.com/downloads. if you are on mac you can use brew or use the windows method. if you are on linux use your package manager. for unbuntu it would be: 
+1. install git, if you are on windows you have to go to https://git-scm.com/downloads. if you are on mac you can use brew or use the windows method. if you are on linux use your package manager. for unbuntu it would be:
 ```bash
-$ sudo apt-get git
+$ sudo apt-get install git
 ```
-2. open a terminal on your computer(powershell on windows) and go to the directory of your choice.  
+2. open a terminal on your computer(powershell on windows) and go to the directory of your choice.
 ```bash
-$ cd ~/Documents/my_git_repo
+$ cd ~/Documents/<my-git-repo>
 ```
 3.now clone the repo using either SSH or HTTPS. example of HTTPS:
 ```git
