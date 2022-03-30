@@ -12,5 +12,5 @@ tell application "iTerm"
         delay 0.5
         close the current window
     end if
-    create window with profile "D=Drakula+ | L=Github"
+    create window with profile "Default"
 end tell
