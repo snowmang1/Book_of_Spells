@@ -28,13 +28,45 @@ fn queue_new_test() {
     assert_eq!(q, q_test);
 }
 #[test]
-fn pop_fail_test() {
+fn push_simple_test() {
     let q = Queue::new();
-    assert_eq!(q.pop(), None);
+    let n1 = Node {next: None, key: 1};
+    let q = q.push(n1);
+    let n_test = Node {next: None, key: 1};
+    assert_eq!(n_test, *q.head.unwrap());
 }
+#[test]
+fn push_two_test() {
+    let q = Queue::new();
+    let n1 = Node {next: None, key: 1};
+    let q = q.push(n1);
+    let n2 = Node {next: None, key: 2};
+    let q = q.push(n2);
+    let n_test = Node {next: Some(Box::new(Node{next: None, key: 1})), key: 2};
+    assert_eq!(n_test, *q.head.unwrap());
+}
+
 #[test]
 fn pop_simple_test() {
     let q = Queue::new();
-    let n: Node = Default::default();
-    assert_eq!(q.pop().unwrap(), n);
+    let n1 = Node {next: None, key: 1};
+    let q = q.push(n1);
+    let n2 = Node {next: None, key: 2};
+    let q = q.push(n2);
+    let q = q.pop();
+    let n_test = Node {next: None, key: 1};
+    assert_eq!(n_test, *q.head.unwrap());
+}
+#[test]
+fn pop_two_test() {
+    let q = Queue::new();
+    let n1 = Node {next: None, key: 1};
+    let q = q.push(n1);
+    let n2 = Node {next: None, key: 2};
+    let q = q.push(n2);
+    let n3 = Node {next: None, key: 3};
+    let q = q.push(n3);
+    let q = q.pop();
+    let n_test = Node {next: Some(Box::new(Node{next: None, key: 1})), key: 2};
+    assert_eq!(n_test, *q.head.unwrap());
 }

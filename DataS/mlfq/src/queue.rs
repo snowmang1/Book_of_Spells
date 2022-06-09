@@ -8,6 +8,14 @@ struct Node {
 }
 
 #[allow(dead_code)]
+impl Node {
+    fn new(key: u16) -> Self{
+        let n = Node {next: None, key};
+        n
+    }
+}
+
+#[allow(dead_code)]
 #[derive(Clone, Default, PartialEq, Debug)]
 struct Queue {
     head: Option<Box<Node>>, //current node
@@ -22,12 +30,13 @@ impl Queue {
     }
     fn push(mut self, n: Node) -> Self {
         // main does not own n after this function call
-        self.head.unwrap().next = Some(Box::new(n.to_owned()));
-        self.size += 1;
-        self.head = Some(Box::new(n));
+        let n = Node {next: self.head, key: n.key}; // n points to previous head
+        self.head = Some(Box::new(n)); // current head is now n
         self
     }
-    fn pop(self) -> Option<Node> {
-        Some(*self.head.unwrap())
+    fn pop(mut self) -> Self {
+        // temperarily returns and unwraps head
+        self.head = self.head.unwrap().next;
+        self
     }
 }
