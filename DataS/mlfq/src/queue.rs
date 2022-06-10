@@ -1,4 +1,5 @@
 // this is my queue
+// queue must be declared mutable in order to use push or pop
 mod tests;
 
 #[derive(Default, Clone, Debug, PartialEq)]
@@ -10,8 +11,7 @@ struct Node {
 impl Node {
     #![allow(dead_code)]
     fn new(key: u16) -> Self{
-        let n = Node {next: None, key};
-        n
+        Node {next: None, key}
     }
 }
 
@@ -27,12 +27,11 @@ impl Queue {
         let q: Queue = Default::default();
         q
     }
-    fn push(mut self, n: Node) -> Self {
+    fn push(&mut self, n: Node) -> () {
         // main does not own n after this function call
-        let n = Node {next: self.head, key: n.key}; // n points to previous head
+        let n = Node {next: self.head.to_owned(), key: n.key}; // n points to previous head
         self.head = Some(Box::new(n)); // current head is now n
         self.size += 1;
-        self
     }
     fn pop(&mut self) -> Result<Node, String> {
         let popped = match self.head.to_owned() {
